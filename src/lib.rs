@@ -83,7 +83,7 @@ use std::io;
 use std::process::Command;
 use std::sync::{Arc, Condvar, Mutex, MutexGuard};
 
-#[cfg(unix)]
+#[cfg(all(unix, not(target_or = "redox")))]
 #[path = "unix.rs"]
 mod imp;
 #[cfg(windows)]
