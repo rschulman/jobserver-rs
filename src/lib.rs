@@ -89,7 +89,10 @@ mod imp;
 #[cfg(windows)]
 #[path = "windows.rs"]
 mod imp;
-#[cfg(not(any(unix, windows)))]
+#[cfg(target_os = "redox")]
+#[path = "redox.rs"]
+mod imp;
+#[cfg(all(not(any(unix, windows))), not(target_os = "redox"))]
 #[path = "wasm.rs"]
 mod imp;
 
